@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# sim - screenshot command based on import and imagemagick
+
+# This script fires screenshot of whole desktop session into clipboard
+# and runs some checks if tools are installed
+# Script also works with key commands but without feedback messages
+
+# (c) 2016, author: Digidog (aka. diqidoq) in courtesy of MAROQQO digital media
+# This program is free software released under the GPL v3 License
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+DATE=`date +%y-%m-%d\_%H-%M-%S`
+
+if hash import 2>/dev/null ; then
+ import -window root "$HOME/Desktop/screenshot_$DATE.png"
+ printf "\n ...Yup! Bam! Screenshot saved to Desktop...\n\n"
+  if hash gimp 2>/dev/null; then
+   gimp "$HOME/Desktop/screenshot_$DATE.png" &
+  else
+   xmessage "  Gimp not installed! Screenshot saved on Desktop.  "
+  fi
+else
+ read -p "OK, wait ... the imagemagick library is missing. Do you want to install it? It is small and awesome. I promise! : " YN
+ if [ "${YN}" == "y" ] ; then
+  sudo apt-get install imagemagick
+  printf "\nPerfect. Imagemagick is installed. Now run the command  again  ...\n"
+ fi
+fi
