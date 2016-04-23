@@ -1,13 +1,23 @@
 # sim
-screenshot command based on import and imagemagick
+Simple desktop screenshot command based on import and imagemagick
 
-## How to implement with Debian LXDE PrintScreen keybind
+## Installation
+
+    mkdir -p ~/share && cd ~/share
+    git clone https://github.com/diqidoq/sim.git
+    sudo chmod a+x sim/sim
+    sudo ln -s ~/share/sim/sim /usr/local/bin/sim
+    sudo chmod a+x /usr/local/bin/sim
+    
+Now simply type sim to make a screenshot of your whole desktop
+
+## How to implement with Debian (and LXDE PrintScreen keybind)
 
 Open the LXDE config file near line ~ 320-350.
 
     sudo vim ~/.config/openbox/lxde-rc.xml
     
-Add this group into the keybind section of the config file.
+Add (or replace if exist) this group into the keybind section of the config file.
 
     <!-- Launch screenshot when PrintScreen is pressed -->
     <keybind key="Print">
@@ -15,9 +25,4 @@ Add this group into the keybind section of the config file.
         <command>sim</command>
       </action>
     </keybind>
-    <!-- Launch LXRandR when Fn+Screen is pressed -->
-    <keybind key="XF86Display">
-      <action name="Execute">
-        <command>lxrandr</command>
-      </action>
-    </keybind>
+
