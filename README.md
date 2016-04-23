@@ -12,7 +12,7 @@ Open your terminal and run following bash commands.
     sudo ln -s ~/share/sim/sim /usr/local/bin/sim
     sudo chmod a+x /usr/local/bin/sim
     
-Now simply type sim to make a screenshot of your whole desktop
+Now simply type `sim` to make a screenshot of your whole desktop screen session.
 
 ### How to implement in openbox/LXDE PrintScreen keybind under Debian
 
@@ -33,6 +33,6 @@ Add (or replace if exist) the following "Print" group into the keybind section o
       </action>
     </keybind>
 
-Save (:wq!) and restart openbox/LXDE with following terminal command
+Save (:wq!) and restart openbox/LXDE with following terminal command:
 
     openbox --reconfigure
